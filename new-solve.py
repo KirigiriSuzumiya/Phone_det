@@ -24,15 +24,15 @@ eval_transforms = T.Compose([
 
 
 train_dataset = pdx.datasets.VOCDetection(
-    data_dir=r'C:\Users\boyif\Desktop\paddle\phone\train\0_phone',                    # 数据集目录
-    file_list=r"C:\Users\boyif\Desktop\paddle\phone\train\0_phone\train_list.txt",    # 训练集文件路径
-    label_list=r"C:\Users\boyif\Desktop\paddle\phone\train\0_phone\labels.txt",       # 数据标签
+    data_dir=r'C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone',                    # 数据集目录
+    file_list=r"C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone\train_list.txt",    # 训练集文件路径
+    label_list=r"C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone\labels.txt",       # 数据标签
     transforms=train_transforms,           # 训练集的数据增强策略
     shuffle=True)                          # 打乱数据集的顺序
 eval_dataset = pdx.datasets.VOCDetection(
-    data_dir=r'C:\Users\boyif\Desktop\paddle\phone\train\0_phone',
-    file_list=r'C:\Users\boyif\Desktop\paddle\phone\train\0_phone\val_list.txt',
-    label_list=r"C:\Users\boyif\Desktop\paddle\phone\train\0_phone\labels.txt",
+    data_dir=r'C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone',
+    file_list=r'C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone\val_list.txt',
+    label_list=r"C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone\labels.txt",
     transforms=eval_transforms)
 
 # 获取标签总数
@@ -71,11 +71,11 @@ model.train(
     warmup_steps=1000,
     warmup_start_lr=0.0,
     lr_decay_epochs=[105, 135, 150],
-    save_interval_epochs=5,
+    save_interval_epochs=1,
     early_stop=True,
     early_stop_patience=10,
     save_dir='output/FasterRCNN',
-    resume_checkpoint=r"C:\Users\boyif\Desktop\paddle\phone\output\FasterRCNN\best_model"
+    resume_checkpoint=r"C:\Users\boyif\Desktop\paddle\Phone_det\output\FasterRCNN\best_model"
     )
 
 ####  模型训练参数说明  #####
