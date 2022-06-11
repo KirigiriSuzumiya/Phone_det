@@ -1,0 +1,60 @@
+Model: FasterRCNN
+Transforms:
+- Resize:
+    interp: CUBIC
+    keep_ratio: false
+    target_size: !!python/tuple
+    - 320
+    - 320
+- Normalize:
+    is_scale: true
+    max_val:
+    - 255.0
+    - 255.0
+    - 255.0
+    mean:
+    - 0.485
+    - 0.456
+    - 0.406
+    min_val:
+    - 0
+    - 0
+    - 0
+    std:
+    - 0.229
+    - 0.224
+    - 0.225
+_Attributes:
+  eval_metrics:
+    bbox_map: 86.01378850215275
+  fixed_input_shape: null
+  labels:
+  - phone
+  model_type: detector
+  num_classes: 1
+_init_params:
+  anchor_sizes:
+  - - 32
+  - - 64
+  - - 128
+  - - 256
+  - - 512
+  aspect_ratios:
+  - 0.5
+  - 1.0
+  - 2.0
+  backbone: ResNet50
+  fpn_num_channels: 256
+  keep_top_k: 100
+  nms_threshold: 0.5
+  num_classes: 1
+  rpn_batch_size_per_im: 256
+  rpn_fg_fraction: 0.5
+  score_threshold: 0.05
+  test_post_nms_top_n: 1000
+  test_pre_nms_top_n: null
+  with_dcn: false
+  with_fpn: true
+completed_epochs: 6
+status: Normal
+version: 2.1.0
