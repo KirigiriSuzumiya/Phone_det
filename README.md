@@ -14,9 +14,7 @@ AI达人特训营
 
 ​        现今，手机已成为人们生活和工作的必需品。但在工业生产环境中，工作人员违规使用手机，屡屡造成安全生产事故，甚至引起人员伤亡。因此，基于工业安全生产和员工人身安全考虑，越来越多的工厂建立起员工手机使用管理规范，限制或禁止员工在生产过程中使用手机。目前，传统的管理手段有两种：一是禁止将手机带入厂区，二是人员监督核查。两种办法均会耗费大量人力，且无法高效、准确地发现员工违规使用手机的情况。如果引入人工智能技术，对设置在生产工区内摄像头采集的视频图片进行分析，快速、准确识别员工违规使用手机的行为，并进行提示和规范，可有效加强安全生产监管，实现降本、提质、增效，加速数字化转型进程。
 
-
-
-![预测](README.assets/预测-16549194322781.jpg)
+![predict_42](README.assets/predict_42.jpg)
 
 *以上为在未标注数据集中的检测结果
 
@@ -379,6 +377,8 @@ print(model.evaluate(test_dataset))
 
 ![预测](README.assets/预测.jpg)
 
+![predict_51](README.assets/predict_51.jpg)
+
 #### 5.2.1 YOLOv3模型预测
 
 ```python
@@ -406,7 +406,7 @@ for path in pathDir:
     image_name = os.path.join(predict_dir, path)
     result = model.predict(image_name)
     print(result)
-    pdx.det.visualize(image_name, result, threshold=0.2, save_dir='./output/predict')  # 将预测好的图片标记并输出到指定目录，threhold代表置信度低于0.6的不进行输出
+    pdx.det.visualize(image_name, result, threshold=0.6, save_dir='./output/predict')  # 将预测好的图片标记并输出到指定目录，threhold代表置信度低于0.6的不进行输出
 ```
 
 
