@@ -4,7 +4,7 @@ AI达人特训营
 
 2022/6/11 雾切凉宫
 
-
+**github传不了太大的模型，详情见：**[基于目标检测的违规使用手机识别 - 飞桨AI Studio (baidu.com)](https://aistudio.baidu.com/aistudio/projectdetail/4201423)
 
 [TOC]
 
@@ -411,11 +411,113 @@ for path in pathDir:
 
 
 
-## 六、模型部署
+## 六、模型优化
+
+### 6.1 优化方式选择
+
+看看数据集，里面还有**1_no_phone**反例图片集没有使用。所以优化方式可以加入反例数据集。（废话）
+
+
+
+### 6.2 加入反例的模型训练
+
+由于我们的目标检测是0-1性质的，反例数据自然也没有标注信息。
+
+查询[数据集api](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/datasets.md#21)果然有无标注反例数据集
+
+- **add_negative_samples**
+
+```
+add_negative_samples(image_dir, empty_ratio=1)
+```
+
+> 将背景图片加入训练。
+>
+> > - **image_dir** (str)：背景图片所在的文件夹目录。不要求准备背景图片的标注文件。
+> > - **empty_ratio** (float or None): 用于指定负样本占总样本数的比例。如果为None，保留数据集初始化是设置的`empty_ratio`值，否则更新原有`empty_ratio`值。如果小于0或大于等于1，则保留全部的负样本。默认为1。
+
+
+
+#### 6.2.1 FasterRCNN加反例训练
+
+```python
+# FasterRCNN加反例训练
+# 获取标签总数
+num_classes = len(train_dataset.labels)
+
+train_dataset.add_negative_samples("/home/aistudio/work/train/train/1_no_phone",empty_ratio=1)
+# 初始化模型
+model = pdx.det.FasterRCNN(num_classes=num_classes, backbone='ResNet50')
+
+# 启动模型训练
+model.train(
+    num_epochs=10,
+    train_dataset=train_dataset,
+    train_batch_size=64,
+    eval_dataset=eval_dataset,
+    pretrain_weights=None,
+    #pretrain_weights="COCO",
+    learning_rate=0.005 / 12,
+    warmup_steps=1000,
+    warmup_start_lr=0.0,
+    lr_decay_epochs=[105, 135, 150],
+    save_interval_epochs=1,
+    early_stop=True,
+    early_stop_patience=5,
+    save_dir='/home/aistudio/work/output/FasterRCNN',
+    resume_checkpoint=r"/home/aistudio/work/output/FasterRCNN/best_model"
+    )
+```
+
+
+
+#### 6.2.2 YOLOv3加反例训练
+
+```
+# YOLOv3训练
+# 获取标签总数
+num_classes = len(train_dataset.labels)
+#加入负样本
+train_dataset.add_negative_samples("/home/aistudio/work/train/train/1_no_phone",empty_ratio=1)
+# 初始化模型
+model = pdx.det.YOLOv3(num_classes=num_classes, backbone='MobileNetV1')
+
+# 启动模型训练
+model.train(
+    num_epochs=26,
+    train_dataset=train_dataset,
+    train_batch_size=48,
+    eval_dataset=eval_dataset,
+    pretrain_weights=None,
+    #pretrain_weights="COCO",
+    learning_rate=0.005 / 12,
+    warmup_steps=1000,
+    warmup_start_lr=0.0,
+    lr_decay_epochs=[105, 135, 150],
+    save_interval_epochs=1,
+    early_stop=True,
+    early_stop_patience=5,
+    save_dir='/home/aistudio/work/output/YOLOv3',
+    resume_checkpoint=r"/home/aistudio/work/output/YOLOv3/best_model"
+    )
+```
+
+
+
+### 6.3 优化后的模型评估
+
+| 模型       | 训练轮数 | map      | 加反例轮数   | map      |
+| ---------- | -------- | -------- | ------------ | -------- |
+| YOLOv3     | 24 epoch | 90.02321 | +2 epoch反例 | 89.91682 |
+| FasterRCNN | 6 epoch  | 88.39791 | +4 epoch反例 | 89.43876 |
+
+*正在等待更多轮数的数据……
+
+
+
+## 七、模型部署
 
 ……施工中……
-
-
 
 
 

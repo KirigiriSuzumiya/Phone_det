@@ -15,14 +15,14 @@ eval_dataset = pdx.datasets.VOCDetection(
     label_list=r"C:\Users\boyif\Desktop\paddle\Phone_det\train\0_phone\labels.txt",
     transforms=eval_transforms)
 print(model.evaluate(eval_dataset))
-
-pathDir = os.listdir(r"C:\Users\boyif\Desktop\paddle\Phone_det\test_images_b")
-count = 0
-for path in pathDir:
-    count = count+1
-    image_name = os.path.join(r"C:\Users\boyif\Desktop\paddle\Phone_det\test_images_b", path)
-    result = model.predict(image_name)
-    print(result)
-    pdx.det.visualize(image_name, result, threshold=0.6, save_dir='./output/predict')  # 将预测好的图片标记并输出到指定目录，threhold代表置信度低于0.6的不进行输出
-    if count >= 100:
-        break
+#
+# pathDir = os.listdir(r"C:\Users\boyif\Desktop\paddle\Phone_det\test_images_b")
+# count = 0
+# for path in pathDir:
+#     count = count+1
+#     image_name = os.path.join(r"C:\Users\boyif\Desktop\paddle\Phone_det\test_images_b", path)
+#     result = model.predict(image_name)
+#     print(result)
+#     pdx.det.visualize(image_name, result, threshold=0.6, save_dir='./output/predict')  # 将预测好的图片标记并输出到指定目录，threhold代表置信度低于0.6的不进行输出
+#     if count >= 100:
+#         break
