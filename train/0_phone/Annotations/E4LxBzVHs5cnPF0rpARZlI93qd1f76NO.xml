@@ -1,0 +1,16 @@
+<annotation>
+	<folder>3-1</folder>
+	<filename>01060952520004429_64149.jpg</filename>
+	<path>01060952520004429_64149.jpg</path>
+	<source>
+		<database />
+		<annotation />
+	</source>
+	<size>
+		<width>225</width>
+		<height>634</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+
+<object><name>phone</name><pose /><truncated>0</truncated><difficult>0</difficult><bndbox><xmin>102</xmin><ymin>164</ymin><xmax>141</xmax><ymax>203</ymax></bndbox></object></annotation>

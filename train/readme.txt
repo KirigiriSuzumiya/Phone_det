@@ -1,0 +1,3 @@
+train目录为赛题训练数据
+0_phone:存在玩手机行为大图片，为了方便参数者使用目标检测方法(不限目标检测方法)对图片进行分类，该正例图片提供了标注文件。标注工具使用的是MRLabeler.exe(https://github.com/imistyrain/MRLabeler)。 其中Annotations是xml标注文件，JPEGImages是图片源文件，labels是txt标注文件，mrconfig.xml是分类配置信息
+1_no_phone：不存在玩手机行为的图片

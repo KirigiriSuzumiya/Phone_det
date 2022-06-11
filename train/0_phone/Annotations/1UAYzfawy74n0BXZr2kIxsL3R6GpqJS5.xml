@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<annotation>
+	<folder>3-1</folder>
+	<filename>1UAYzfawy74n0BXZr2kIxsL3R6GpqJS5.jpg</filename>
+	<path>1UAYzfawy74n0BXZr2kIxsL3R6GpqJS5.jpg</path>
+	<source>
+		<database></database>
+		<annotation></annotation>
+	</source>
+	<size>
+		<width>223</width>
+		<height>587</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>phone</name>
+		<pose></pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>118</ymin>
+			<xmax>108</xmax>
+			<ymax>154</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<dataset>
+	<name>phone</name>
+	<year>2021</year>
+	<imagedir>JPEGImages</imagedir>
+	<annotationdir>Annotations</annotationdir>
+	<labelsdir>labels</labelsdir>
+	<currentlabelingclass>phone</currentlabelingclass>
+	<lastlabeledindex>0</lastlabeledindex>
+	<bsavexml>true</bsavexml>
+	<bsavetxt>true</bsavetxt>
+	<classes>
+		<class>phone</class>
+	</classes>
+</dataset>
